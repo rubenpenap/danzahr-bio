@@ -1,11 +1,410 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const academy = {
+	name: "Danzahr Studio",
+	handle: "@danzahr.studio",
+	description:
+		"Danza árabe, energía y expresión en cada movimiento. Un espacio para conectar con la música, el cuerpo y la alegría. ✨💃",
+	profileImage: `${import.meta.env.BASE_URL}images/profile.jpeg`,
+	backgroundImage: `${import.meta.env.BASE_URL}images/danza-arabe-fondo.jpg`,
+};
+
+const socialLinks = [
+	{
+		name: "Instagram",
+		href: "https://www.instagram.com/danzahr.studio?igsh=cXh2NGw4d3A5MGdk",
+		icon: "instagram",
+	},
+	{
+		name: "Facebook",
+		href: "https://www.facebook.com/share/1EorMQLkks/?mibextid=wwXIfr",
+		icon: "facebook",
+	},
+	{
+		name: "TikTok",
+		href: "https://www.tiktok.com/@danzahr.studio?_r=1&_t=ZS-959vsJgWhk1",
+		icon: "tiktok",
+	},
+];
+
+const mainLinks = [
+  { title: "Contacto directo por WhatsApp", href: "https://wa.me/" },
+	{ title: "Clases", href: "https://wa.me/", disabled: true },
+	{
+		title: "Horarios y niveles disponibles",
+		href: "https://wa.me/",
+		disabled: true,
+	},
+	{ title: "Inscripciones abiertas", href: "https://wa.me/", disabled: true },
+	{
+		title: "Presentaciones y eventos",
+		href: "https://www.instagram.com/danzahr.studio?igsh=cXh2NGw4d3A5MGdk",
+		disabled: true,
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title='Academia de Baile Angélica'
+	description='Landing mobile first para la Academia de Baile Angélica con foto de perfil, redes y enlaces principales.'
+>
+	<main class='page' style={`--bg-image: url('${academy.backgroundImage}');`}>
+		<div class='backdrop'></div>
+
+		<section class='shell'>
+			<header class='hero'>
+				<img
+					class='avatar'
+					src={academy.profileImage}
+					alt={`Foto de perfil de ${academy.name}`}
+					loading='eager'
+				/>
+
+				<p class='handle'>{academy.handle}</p>
+				<h1>{academy.name}</h1>
+				<p class='description'>{academy.description}</p>
+			</header>
+
+			<nav class='socials' aria-label='Redes sociales'>
+				{
+					socialLinks.map((social) => (
+						<a
+							href={social.href}
+							target='_blank'
+							rel='noreferrer'
+							aria-label={social.name}
+						>
+							{social.icon === "instagram" && (
+								<svg viewBox='0 0 24 24' aria-hidden='true'>
+									<rect x='3.5' y='3.5' width='17' height='17' rx='5' />
+									<circle cx='12' cy='12' r='4.1' />
+									<circle cx='17.2' cy='6.8' r='1.2' class='fill' />
+								</svg>
+							)}
+							{social.icon === "facebook" && (
+								<svg viewBox='0 0 24 24' aria-hidden='true'>
+									<path d='M13.4 20v-7h2.3l.4-2.8h-2.7V8.4c0-.8.3-1.4 1.5-1.4H16V4.6c-.3 0-.9-.1-1.8-.1-2.5 0-4 1.5-4 4.2v1.5H8v2.8h2.3v7Z' />
+								</svg>
+							)}
+							{social.icon === "tiktok" && (
+								<svg viewBox='0 0 24 24' aria-hidden='true'>
+									<path d='M14.8 4c.5 1.5 1.5 2.7 3.2 3.2v3.1c-1.2 0-2.3-.3-3.2-.9v5.7a5.6 5.6 0 1 1-5.6-5.6c.3 0 .7 0 1 .1v3.1a2.4 2.4 0 1 0 1.4 2.3V4h3.2Z' />
+								</svg>
+							)}
+						</a>
+					))
+				}
+			</nav>
+
+			<section class='links' aria-label='Enlaces principales'>
+				{
+					mainLinks.map((link) => (
+						link.disabled ? (
+							<div class='link-card is-disabled' aria-disabled='true'>
+								<span>{link.title}</span>
+								<span class='badge'>Próximamente</span>
+							</div>
+						) : (
+							<a
+								class='link-card'
+								href={link.href}
+								target='_blank'
+								rel='noreferrer'
+							>
+								<span>{link.title}</span>
+								<span class='chevron' aria-hidden='true'>
+									+
+								</span>
+							</a>
+						)
+					))
+				}
+			</section>
+		</section>
+	</main>
 </Layout>
+
+<style>
+	:root {
+		--gold: #bb9157;
+		--gold-soft: #d3b081;
+		--ink: #050505;
+		--paper: #f4eee6;
+	}
+
+	.page {
+		position: relative;
+		min-height: 100vh;
+		overflow-x: hidden;
+		background-image:
+			linear-gradient(180deg, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 0.8)),
+			var(--bg-image);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.backdrop {
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(
+				circle at top right,
+				rgba(187, 145, 87, 0.28),
+				transparent 28%
+			),
+			radial-gradient(
+				circle at bottom left,
+				rgba(187, 145, 87, 0.22),
+				transparent 24%
+			);
+	}
+
+	.shell {
+		position: relative;
+		z-index: 1;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 24px 16px 36px;
+	}
+
+	.hero {
+		width: 100%;
+		max-width: 28rem;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 24px 20px 22px;
+		border-radius: 30px;
+		background: rgba(13, 13, 13, 0.62);
+		border: 1px solid rgba(211, 176, 129, 0.28);
+		backdrop-filter: blur(12px);
+		box-shadow: 0 22px 60px rgba(0, 0, 0, 0.34);
+		text-align: center;
+	}
+
+	.avatar {
+		width: 108px;
+		height: 108px;
+		object-fit: cover;
+		display: block;
+		margin: 0 auto 16px;
+		border-radius: 999px;
+		border: 3px solid rgba(211, 176, 129, 0.95);
+		box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
+	}
+
+	.handle,
+	h1,
+	.description {
+		margin: 0;
+	}
+
+	.handle {
+		font-size: 0.74rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: rgba(211, 176, 129, 0.88);
+	}
+
+	h1 {
+		margin-top: 8px;
+		font-size: clamp(2rem, 8vw, 3.3rem);
+		line-height: 0.98;
+		color: var(--paper);
+		text-wrap: balance;
+	}
+
+	.description {
+		margin-top: 14px;
+		font-size: 0.98rem;
+		line-height: 1.6;
+		color: rgba(244, 238, 230, 0.88);
+	}
+
+	.socials,
+	.links {
+		width: 100%;
+		max-width: 28rem;
+		box-sizing: border-box;
+		margin: 14px 0 0;
+	}
+
+	.socials {
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.socials a {
+		width: 48px;
+		height: 48px;
+		display: grid;
+		place-items: center;
+		border-radius: 999px;
+		background: rgba(187, 145, 87, 0.14);
+		border: 1px solid rgba(211, 176, 129, 0.28);
+		color: var(--paper);
+		text-decoration: none;
+		transition:
+			transform 180ms ease,
+			filter 180ms ease,
+			background 180ms ease;
+	}
+
+	.socials svg {
+		width: 30px;
+		height: 30px;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.socials .fill {
+		fill: currentColor;
+		stroke: none;
+	}
+
+	.links {
+		display: grid;
+		gap: 12px;
+	}
+
+	.link-card {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		min-height: 62px;
+		padding: 16px 18px;
+		border-radius: 20px;
+		background: linear-gradient(
+			135deg,
+			rgba(187, 145, 87, 0.95),
+			rgba(211, 176, 129, 0.86)
+		);
+		color: var(--ink);
+		text-decoration: none;
+		font-weight: 700;
+		box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2);
+		transition:
+			transform 180ms ease,
+			filter 180ms ease;
+	}
+
+	.link-card.is-disabled {
+		padding-top: 26px;
+		background: linear-gradient(
+			135deg,
+			rgba(187, 145, 87, 0.55),
+			rgba(211, 176, 129, 0.45)
+		);
+		color: rgba(5, 5, 5, 0.8);
+		cursor: not-allowed;
+		pointer-events: none;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+	}
+
+	.badge {
+		position: absolute;
+		top: 10px;
+		right: 12px;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 12px;
+		border-radius: 999px;
+		background:
+			linear-gradient(
+				135deg,
+				rgba(255, 248, 236, 0.34),
+				rgba(211, 176, 129, 0.9)
+			),
+			rgba(5, 5, 5, 0.7);
+		border: 1px solid rgba(255, 248, 236, 0.36);
+		box-shadow:
+			0 10px 22px rgba(0, 0, 0, 0.18),
+			inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		color: #241507;
+		font-size: 0.64rem;
+		font-weight: 800;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		line-height: 1;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(10px);
+		overflow: hidden;
+	}
+
+	.badge::before {
+		content: "";
+		width: 6px;
+		height: 6px;
+		border-radius: 999px;
+		background: #fff8ec;
+		box-shadow: 0 0 0 4px rgba(255, 248, 236, 0.18);
+		flex: none;
+	}
+
+	.badge::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			120deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.22) 45%,
+			transparent 70%
+		);
+		transform: translateX(-140%);
+		transition: transform 260ms ease;
+	}
+
+	.link-card.is-disabled:hover .badge::after,
+	.link-card.is-disabled:focus-visible .badge::after {
+		transform: translateX(140%);
+	}
+
+	.link-card:hover,
+	.link-card:focus-visible,
+	.socials a:hover,
+	.socials a:focus-visible {
+		transform: translateY(-2px);
+		filter: brightness(1.05);
+		outline: none;
+	}
+
+	.chevron {
+		font-size: 1.25rem;
+		line-height: 1;
+	}
+
+	@media (min-width: 768px) {
+		.shell {
+			justify-content: center;
+			padding: 40px 24px;
+		}
+
+		.hero {
+			width: min(100%, 31rem);
+			padding: 30px 28px 24px;
+		}
+
+		.socials,
+		.links {
+			width: min(100%, 31rem);
+		}
+
+		.avatar {
+			width: 122px;
+			height: 122px;
+		}
+	}
+</style>
