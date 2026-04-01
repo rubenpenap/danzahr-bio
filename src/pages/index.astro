@@ -34,16 +34,16 @@ const socialLinks = [
 ];
 
 const mainLinks = [
-  { title: "Contacto directo por WhatsApp", href: "https://wa.me/" },
+  { title: "Contacto por WhatsApp", href: "https://wa.me/" },
 	{ title: "Clases", href: "https://wa.me/", disabled: true },
 	{
-		title: "Horarios y niveles disponibles",
+		title: "Horarios y niveles",
 		href: "https://wa.me/",
 		disabled: true,
 	},
-	{ title: "Inscripciones abiertas", href: "https://wa.me/", disabled: true },
+	{ title: "Inscripciones", href: "https://wa.me/", disabled: true },
 	{
-		title: "Presentaciones y eventos",
+		title: "Presentaciones",
 		href: "https://www.instagram.com/danzahr.studio?igsh=cXh2NGw4d3A5MGdk",
 		disabled: true,
 	},
@@ -305,9 +305,9 @@ const mainLinks = [
 		padding: 16px 18px;
 		border-radius: 20px;
 		background: linear-gradient(
-			135deg,
-			rgba(187, 145, 87, 0.95),
-			rgba(211, 176, 129, 0.86)
+			145deg,
+			rgba(238, 214, 156, 0.7),
+			rgba(239, 231, 218, 0.7)
 		);
 		color: var(--ink);
 		text-decoration: none;
@@ -319,13 +319,13 @@ const mainLinks = [
 	}
 
 	.link-card.is-disabled {
-		padding-top: 26px;
 		background: linear-gradient(
 			135deg,
-			rgba(187, 145, 87, 0.55),
-			rgba(211, 176, 129, 0.45)
+			rgba(238, 214, 156, 0.4),
+			rgba(239, 231, 218, 0.4)
 		);
-		color: rgba(5, 5, 5, 0.8);
+		color: rgba(0, 0, 0, 1);
+    text-shadow: 1px 1px 1px rgba(238, 214, 156, 0.7);
 		cursor: not-allowed;
 		pointer-events: none;
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
@@ -333,8 +333,8 @@ const mainLinks = [
 
 	.badge {
 		position: absolute;
-		top: 10px;
-		right: 12px;
+		top: 16px;
+		right: 18px;
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
@@ -342,16 +342,17 @@ const mainLinks = [
 		border-radius: 999px;
 		background:
 			linear-gradient(
-				135deg,
-				rgba(255, 248, 236, 0.34),
-				rgba(211, 176, 129, 0.9)
+				145deg,
+        rgba(238, 214, 156, 0.7),
+        rgba(239, 231, 218, 0.7)
 			),
 			rgba(5, 5, 5, 0.7);
 		border: 1px solid rgba(255, 248, 236, 0.36);
 		box-shadow:
 			0 10px 22px rgba(0, 0, 0, 0.18),
 			inset 0 1px 0 rgba(255, 255, 255, 0.2);
-		color: #241507;
+		color: #000000;
+    text-shadow: 1px 1px 1px rgba(238, 214, 156, 0.7);
 		font-size: 0.64rem;
 		font-weight: 800;
 		letter-spacing: 0.16em;
