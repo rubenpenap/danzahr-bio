@@ -121,6 +121,20 @@ const mainLinks = [
 				}
 			</nav>
 
+			<section class='support' aria-label='Invítame un café en Ko-fi'>
+				<div class='kofi-widget'>
+					<script
+						is:inline
+						type='text/javascript'
+						src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'
+					></script>
+					<script is:inline type='text/javascript'>
+						kofiwidget2.init('Invítame un café', '#eed69cb3', 'G2G51XUIG9');
+						kofiwidget2.draw();
+					</script>
+				</div>
+			</section>
+
 			<section class='links' aria-label='Enlaces principales'>
 				{
 					mainLinks.map((link) => (
@@ -250,6 +264,7 @@ const mainLinks = [
 	}
 
 	.socials,
+	.support,
 	.links {
 		width: 100%;
 		max-width: 28rem;
@@ -288,6 +303,90 @@ const mainLinks = [
 		width: 30px;
 		height: 30px;
 		display: block;
+	}
+
+	.support {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 18px 0;
+		border-top: 1px solid rgba(211, 176, 129, 0.28);
+		border-bottom: 1px solid rgba(211, 176, 129, 0.28);
+	}
+
+	.kofi-widget {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+  .kofi-widget :global(.btn-container) {
+    min-width: 100% !important;
+  }
+
+	.kofi-widget :global(a) {
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: nowrap !important;
+		align-items: center !important;
+		gap: 10px;
+		grid-auto-flow: column;
+		grid-template-columns: auto 1fr;
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box;
+		padding: 16px 18px !important;
+		border: 1px solid rgba(211, 176, 129, 0.22) !important;
+		border-radius: 20px !important;
+		background: linear-gradient(
+			145deg,
+			rgba(238, 214, 156, 0.7),
+			rgba(239, 231, 218, 0.7)
+		) !important;
+		box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2) !important;
+		color: var(--ink) !important;
+		font-weight: 700 !important;
+		text-decoration: none !important;
+		text-align: center;
+		transition:
+			transform 180ms ease,
+			filter 180ms ease,
+			box-shadow 180ms ease !important;
+	}
+
+  .kofi-widget :global(img.kofiimg) {
+    width: 2.567rem !important;
+    height: 1.75rem !important;
+    margin: 0 !important;
+  }
+
+  .kofi-widget :global(.kofitext) {
+    font-family: "Instrument Sans", "Segoe UI", sans-serif;
+    font-size: 1.05rem !important;
+    line-height: 1.75rem !important;
+  }
+
+	.kofi-widget :global(span),
+	.kofi-widget :global(a > :not(img)) {
+		color: var(--ink) !important;
+    gap: 1rem;
+	}
+
+	.kofi-widget :global(span) {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		white-space: nowrap;
+	}
+
+	.kofi-widget :global(a:hover),
+	.kofi-widget :global(a:focus-visible),
+	.kofi-widget :global(.kofiimg:hover),
+	.kofi-widget :global(.kofiimg:focus-visible) {
+		transform: translateY(-2px);
+		filter: brightness(1.05);
+		outline: none;
 	}
 
 	.links {
@@ -418,6 +517,7 @@ const mainLinks = [
 		}
 
 		.socials,
+		.support,
 		.links {
 			width: min(100%, 31rem);
 		}
